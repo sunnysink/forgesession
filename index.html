@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Forge Session — A Private 1:1 with Sunny</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ═══════════════════════════════════════════════════════
+       THE FORGE SESSION — Sales Page
+       Theme: Molten gold, deep charcoal, floating embers,
+       smoldering glow, phoenix-energy, candlelight warmth
+       ═══════════════════════════════════════════════════════ */
+
+    /* ─── CSS Variables ─── */
+    :root {
+      --ash: #0E0C09;
+      --charcoal: #151210;
+      --coal: #1A1714;
+      --coal-light: #221E1A;
+      --smoke: #2A2520;
+      --ember: #E8832A;
+      --ember-glow: #FF9B3E;
+      --ember-light: #FFB86A;
+      --molten: #D4A030;
+      --molten-light: #E8C05A;
+      --molten-faint: rgba(212,160,48,0.06);
+      --flame: #C44A20;
+      --flame-light: #E06030;
+      --warm-gray: #8A7E72;
+      --warm-gray-light: #B0A498;
+      --cream: #E8DDD0;
+      --white: #F4EDE4;
+      --divider: rgba(232,131,42,0.12);
+    }
+
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--ash);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── Layout Helpers ─── */
+    .inner { max-width: 780px; margin: 0 auto; }
+    .text-center { text-align: center; }
+    .text-left { text-align: left; }
+
+    .section {
+      padding: 72px 28px;
+      position: relative;
+    }
+    .bg-ash { background: var(--ash); }
+    .bg-charcoal { background: var(--charcoal); }
+    .bg-coal { background: var(--coal); }
+
+    /* ─── Typography ─── */
+    .heading {
+      font-family: 'Bodoni Moda', serif;
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.25;
+    }
+
+    .body-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.85;
+      color: var(--warm-gray-light);
+    }
+
+    .label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--ember-glow);
+      margin-bottom: 16px;
+      opacity: 0.7;
+    }
+
+    .italic { font-style: italic; }
+    .color-ember { color: var(--ember); }
+    .color-ember-glow { color: var(--ember-glow); }
+    .color-ember-light { color: var(--ember-light); }
+    .color-molten-light { color: var(--molten-light); }
+    .color-warm-gray { color: var(--warm-gray); }
+
+    .num {
+      font-family: 'Bodoni Moda', serif;
+      font-style: italic;
+      font-size: 32px;
+      color: var(--ember);
+      opacity: 0.4;
+      min-width: 48px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    /* ─── Animations ─── */
+    @keyframes emberRise {
+      0%   { transform: translateY(0) translateX(0); opacity: 0.8; }
+      30%  { opacity: 1; }
+      100% { transform: translateY(-500px) translateX(var(--edrift)); opacity: 0; }
+    }
+
+    @keyframes smolderPulse {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50%      { opacity: 0.7; transform: scale(1.05); }
+    }
+
+    @keyframes smolderDrift {
+      0%, 100% { transform: translate(0, 0); }
+      33%      { transform: translate(15px, -10px); }
+      66%      { transform: translate(-10px, 8px); }
+    }
+
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ─── Top Bar ─── */
+    .top-bar {
+      background: rgba(232,131,42,0.05);
+      border-bottom: 1px solid var(--divider);
+      padding: 13px 24px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--warm-gray-light);
+    }
+
+    /* ─── Marquee Strip ─── */
+    .marquee-strip {
+      overflow: hidden;
+      border-bottom: 1px solid var(--divider);
+      background: var(--charcoal);
+      padding: 14px 0;
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      animation: marquee 30s linear infinite;
+      width: max-content;
+    }
+
+    .marquee-item {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--warm-gray);
+      white-space: nowrap;
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .marquee-dot { color: var(--ember); font-size: 6px; }
+
+    /* ─── Hero ─── */
+    .hero {
+      min-height: 520px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero h1 { font-size: 54px; margin-bottom: 10px; }
+    .hero .subtitle {
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--warm-gray);
+      margin-bottom: 28px;
+    }
+
+    .hero-pill {
+      display: inline-block;
+      border: 1px solid var(--divider);
+      border-radius: 40px;
+      padding: 10px 28px;
+      margin-bottom: 48px;
+      background: rgba(232,131,42,0.04);
+      font-size: 14px;
+      color: var(--warm-gray-light);
+    }
+
+    .hero h2 { font-size: 38px; max-width: 680px; margin: 0 auto 48px; }
+
+    /* ─── Smolder Glow ─── */
+    .smolder-1 {
+      position: absolute;
+      width: 60%; height: 70%;
+      bottom: 0; left: 20%;
+      background: radial-gradient(ellipse at 50% 100%, rgba(232,131,42,0.08), rgba(196,74,32,0.04), transparent 70%);
+      animation: smolderPulse 6s ease-in-out infinite;
+      pointer-events: none; z-index: 1;
+    }
+
+    .smolder-2 {
+      position: absolute;
+      width: 40%; height: 40%;
+      bottom: 5%; left: 30%;
+      background: radial-gradient(circle, rgba(212,160,48,0.06), transparent 60%);
+      animation: smolderDrift 10s ease-in-out infinite;
+      pointer-events: none; z-index: 1;
+    }
+
+    /* ─── Ember Container ─── */
+    .ember-container {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .ember-dot {
+      position: absolute;
+      bottom: -10px;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* ─── Mockup Cards ─── */
+    .mockup-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 0 auto 40px;
+      max-width: 620px;
+    }
+
+    .mockup-card {
+      flex: 1;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--divider);
+      border-radius: 10px;
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      height: 160px;
+      margin-top: 20px;
+    }
+
+    .mockup-card.accent {
+      background: linear-gradient(160deg, var(--coal-light), var(--smoke));
+      border-color: rgba(232,131,42,0.2);
+      height: 200px;
+      margin-top: 0;
+      box-shadow: 0 0 40px rgba(232,131,42,0.06);
+    }
+
+    .mockup-card-title {
+      font-size: 9px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--warm-gray);
+      margin-bottom: 4px;
+    }
+
+    .mockup-card.accent .mockup-card-title { color: var(--ember-glow); }
+
+    .mockup-item {
+      font-size: 11px;
+      color: var(--warm-gray-light);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mockup-item .diamond { color: var(--ember); font-size: 8px; }
+
+    /* ─── CTA Button ─── */
+    .cta-wrap { text-align: center; margin: 36px 0 12px; }
+
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--ember), var(--flame), var(--molten));
+      background-size: 200% 200%;
+      color: var(--ash);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 18px 52px;
+      cursor: pointer;
+      border-radius: 3px;
+      box-shadow: 0 0 32px rgba(232,131,42,0.25), 0 4px 16px rgba(0,0,0,0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 48px rgba(232,131,42,0.35), 0 8px 24px rgba(0,0,0,0.5);
+    }
+
+    .cta-sub {
+      font-size: 13px;
+      color: var(--warm-gray);
+      margin-top: 14px;
+      line-height: 1.6;
+    }
+
+    /* ─── Ember Divider ─── */
+    .ember-divider { text-align: center; padding: 10px 0; }
+    .ember-divider svg { opacity: 0.5; }
+
+    /* ─── Two-Column Grid ─── */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 660px;
+      margin: 0 auto;
+    }
+
+    .compare-card {
+      background: var(--coal);
+      border-radius: 10px;
+      padding: 36px 28px;
+      text-align: left;
+    }
+
+    .compare-card .card-label {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+    }
+
+    .compare-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 18px;
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--warm-gray-light);
+    }
+
+    .compare-item .x-mark {
+      color: var(--warm-gray);
+      font-size: 14px;
+      margin-top: 2px;
+      opacity: 0.4;
+      flex-shrink: 0;
+    }
+
+    .after-item {
+      font-size: 13px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--warm-gray-light);
+      padding: 10px 0;
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .after-item:last-child { border-bottom: none; }
+
+    /* ─── Numbered Sections ─── */
+    .numbered-row {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      padding: 32px 0;
+      border-top: 1px solid var(--divider);
+    }
+
+    .numbered-row h3 {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 19px;
+      color: var(--ember-light);
+      margin-bottom: 8px;
+    }
+
+    /* ─── Session Specs ─── */
+    .specs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      max-width: 620px;
+      margin: 0 auto 12px;
+    }
+
+    .spec-card {
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+      padding: 24px 16px;
+      border: 1px solid var(--divider);
+      text-align: center;
+    }
+
+    .spec-label {
+      font-size: 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--ember);
+      margin-bottom: 8px;
+      opacity: 0.6;
+    }
+
+    .spec-value {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 17px;
+      font-style: italic;
+      color: var(--white);
+    }
+
+    /* ─── "Is This You" Cards ─── */
+    .is-you-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .is-you-card {
+      background: rgba(255,255,255,0.03);
+      border-radius: 10px;
+      padding: 28px 24px;
+      border: 1px solid var(--divider);
+      text-align: left;
+    }
+
+    .is-you-num {
+      font-family: 'Bodoni Moda', serif;
+      font-style: italic;
+      font-size: 26px;
+      color: var(--ember);
+      display: block;
+      margin-bottom: 10px;
+      line-height: 1;
+      opacity: 0.35;
+    }
+
+    /* ─── Meet Your Guide ─── */
+    .guide-row {
+      display: flex;
+      gap: 48px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .guide-photo {
+      width: 260px; height: 320px;
+      border-radius: 10px;
+      border: 1px solid var(--divider);
+      flex-shrink: 0;
+      overflow: hidden;
+      background: var(--smoke);
+    }
+
+    .guide-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .guide-text { flex: 1; min-width: 280px; }
+
+    /* ─── Testimonials ─── */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 18px;
+    }
+
+    .testimonial-card {
+      background: rgba(255,255,255,0.03);
+      border-radius: 10px;
+      padding: 32px 24px 28px;
+      border: 1px solid var(--divider);
+      text-align: left;
+    }
+
+    .testimonial-quote {
+      font-family: 'Bodoni Moda', serif;
+      font-style: italic;
+      font-size: 48px;
+      color: var(--ember);
+      line-height: 1;
+      margin-bottom: 8px;
+      opacity: 0.4;
+    }
+
+    .testimonial-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .testimonial-detail {
+      font-size: 12px;
+      color: var(--warm-gray);
+      margin-top: 2px;
+    }
+
+    /* ─── Investment Card ─── */
+    .invest-card {
+      max-width: 480px;
+      margin: 32px auto;
+      background: var(--smoke);
+      border-radius: 12px;
+      border: 1px solid var(--divider);
+      padding: 48px 40px;
+      box-shadow: 0 0 60px rgba(232,131,42,0.06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .invest-glow {
+      position: absolute;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,131,42,0.08), transparent 70%);
+      bottom: -60px; right: -60px;
+      pointer-events: none;
+    }
+
+    .invest-price {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 52px;
+      color: var(--ember-glow);
+      margin-bottom: 8px;
+      text-shadow: 0 0 30px rgba(232,131,42,0.2);
+      position: relative;
+    }
+
+    .invest-details {
+      font-family: 'Bodoni Moda', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: var(--warm-gray);
+      margin-bottom: 28px;
+      line-height: 1.7;
+      position: relative;
+    }
+
+    /* ─── FAQ ─── */
+    .faq-item {
+      padding: 28px 0;
+      border-top: 1px solid var(--divider);
+    }
+
+    .faq-item h3 {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 18px;
+      color: var(--ember-light);
+      margin-bottom: 10px;
+    }
+
+    /* ─── Footer ─── */
+    .site-footer {
+      background: var(--smoke);
+      border-top: 1px solid var(--divider);
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(138,126,114,0.4);
+      line-height: 2.2;
+    }
+
+    .site-footer a {
+      color: rgba(138,126,114,0.5);
+      cursor: pointer;
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 36px; }
+      .hero h2 { font-size: 26px; }
+      .mockup-row { flex-direction: column; max-width: 320px; }
+      .mockup-card, .mockup-card.accent { height: auto; margin-top: 0; }
+      .grid-2, .is-you-grid { grid-template-columns: 1fr; }
+      .specs-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .guide-row { flex-direction: column; }
+      .guide-photo { width: 100%; height: 280px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ TOP BAR ═══ -->
+  <div class="top-bar">
+    For <span class="color-ember-light">Spiritual Business Owners, Tarot Readers &amp; Coaches</span> Who Know Their Work Is Powerful but Can't Find the Words to Sell It
+  </div>
+
+  <!-- ═══ MARQUEE STRIP ═══ -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span class="marquee-item">The Forge Session <span class="marquee-dot">🔥</span></span>
+      <span class="marquee-item">40-Minute Private Call <span class="marquee-dot">🔥</span></span>
+      <span class="marquee-item">Soul-Forged Method <span class="marquee-dot">🔥</span></span>
+      <span class="marquee-item">Live on Zoom <span class="marquee-dot">🔥</span></span>
+      <span class="marquee-item">Strategy · Messaging · Offers <span class="marquee-dot">🔥</span></span>
+      <span class="marquee-item">Walk Away with Deliverables <span class="marquee-dot">🔥</span></span>
+      <!-- Doubled for seamless loop -->
+      <span class="marquee-item">The Forge Session <span class="marquee-dot">🔥</span></span>
+      <span class="marquee-item">40-Minute Private Call <span class="marquee-dot">🔥</span></span>
+      <span class="marquee-item">Soul-Forged Method <span class="marquee-dot">🔥</span></span>
+      <span class="marquee-item">Live on Zoom <span class="marquee-dot">🔥</span></span>
+      <span class="marquee-item">Strategy · Messaging · Offers <span class="marquee-dot">🔥</span></span>
+      <span class="marquee-item">Walk Away with Deliverables <span class="marquee-dot">🔥</span></span>
+    </div>
+  </div>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="section bg-ash hero">
+    <!-- Smolder Glow -->
+    <div class="smolder-1"></div>
+    <div class="smolder-2"></div>
+
+    <!-- Floating Embers (injected by JS) -->
+    <div class="ember-container" id="heroEmbers"></div>
+
+    <div class="inner text-center" style="position:relative; z-index:3; width:100%;">
+      <h1 class="heading">The Forge <span class="italic color-ember-glow">Session</span></h1>
+      <p class="subtitle">A Private 1:1 Session with Sunny</p>
+
+      <div class="hero-pill">
+        <span class="color-ember" style="margin-right:8px; font-size:10px;">🔥</span>
+        40 minutes of real-time strategy, messaging, and offer positioning for $47
+      </div>
+
+      <h2 class="heading">
+        For the spiritual business owner who can feel their method taking shape but
+        <span class="italic color-molten-light">needs real eyes on their work to finally break through</span>
+      </h2>
+
+      <!-- Mockup Cards -->
+      <div class="mockup-row">
+        <div class="mockup-card">
+          <div class="mockup-card-title">Before Your Session</div>
+          <div class="mockup-item"><span class="diamond">◆</span> Fuzzy transformation statement</div>
+          <div class="mockup-item"><span class="diamond">◆</span> Session flow that feels clunky</div>
+          <div class="mockup-item"><span class="diamond">◆</span> Copy that doesn't convert</div>
+        </div>
+        <div class="mockup-card accent">
+          <div class="mockup-card-title">Your Forge Session</div>
+          <div class="mockup-item"><span class="diamond">◆</span> My eyes on your actual work</div>
+          <div class="mockup-item"><span class="diamond">◆</span> Real-time rewrites together</div>
+          <div class="mockup-item"><span class="diamond">◆</span> Walk away with deliverables</div>
+          <div class="mockup-item"><span class="diamond">◆</span> 90-day plan before you leave</div>
+        </div>
+        <div class="mockup-card">
+          <div class="mockup-card-title">After Your Session</div>
+          <div class="mockup-item"><span class="diamond">◆</span> Messaging that sounds like you</div>
+          <div class="mockup-item"><span class="diamond">◆</span> A method you can explain</div>
+          <div class="mockup-item"><span class="diamond">◆</span> Confidence in your next step</div>
+        </div>
+      </div>
+
+      <div class="cta-wrap">
+        <a href="https://calendly.com/sacredvisionsociety/forge-session" target="_blank" rel="noopener noreferrer" class="cta-btn">Book Your Forge Session · $47</a>
+        <p class="cta-sub">You'll book and pay on Calendly. Your Zoom link arrives as soon as you schedule.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Divider ─── -->
+  <div class="ember-divider">
+    <svg width="240" height="24" viewBox="0 0 240 24">
+      <line x1="0" y1="12" x2="85" y2="12" stroke="rgba(232,131,42,0.12)" stroke-width="0.5" />
+      <path d="M100,18 Q104,6 108,12 Q112,4 116,12 Q120,6 124,18" fill="none" stroke="#E8832A" stroke-width="0.8" opacity="0.4" />
+      <circle cx="112" cy="10" r="2" fill="#FF9B3E" opacity="0.6" />
+      <path d="M116,18 Q118,10 120,14 Q122,8 124,14 Q126,10 128,18" fill="none" stroke="#D4A030" stroke-width="0.6" opacity="0.3" />
+      <line x1="155" y1="12" x2="240" y2="12" stroke="rgba(232,131,42,0.12)" stroke-width="0.5" />
+    </svg>
+  </div>
+
+  <!-- ═══ THE DIFFERENCE ═══ -->
+  <section class="section bg-charcoal">
+    <div class="inner text-center">
+      <div class="label">The Difference</div>
+      <h2 class="heading" style="font-size:36px; margin-bottom:48px;">Without the Forge Session vs With It</h2>
+
+      <div class="grid-2">
+        <div class="compare-card" style="border:1px solid rgba(138,126,114,0.08);">
+          <div class="card-label color-warm-gray">Without the Forge Session</div>
+          <div class="compare-item"><span class="x-mark">✕</span><span>Your transformation statement sounds like everyone else's</span></div>
+          <div class="compare-item"><span class="x-mark">✕</span><span>You keep rewriting your method statement but none of them feel like you</span></div>
+          <div class="compare-item"><span class="x-mark">✕</span><span>Your session flow feels clunky and you can't tell why</span></div>
+          <div class="compare-item"><span class="x-mark">✕</span><span>You're posting and posting but it's not turning into clients</span></div>
+          <div class="compare-item"><span class="x-mark">✕</span><span>You have ideas for offers but don't know how to position them so people buy</span></div>
+        </div>
+
+        <div class="compare-card" style="border:1px solid var(--divider); box-shadow:0 0 30px rgba(232,131,42,0.04);">
+          <div class="card-label color-ember-glow">After the Forge Session</div>
+          <div class="after-item">A transformation statement that sounds like you and only you</div>
+          <div class="after-item">Language your ideal clients actually respond to</div>
+          <div class="after-item">A session flow that makes sense and delivers results</div>
+          <div class="after-item">A concrete 90-day plan for your next steps</div>
+          <div class="after-item">Messaging you can use right now in your content and offers</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ember-divider">
+    <svg width="240" height="24" viewBox="0 0 240 24"><line x1="0" y1="12" x2="85" y2="12" stroke="rgba(232,131,42,0.12)" stroke-width="0.5"/><path d="M100,18 Q104,6 108,12 Q112,4 116,12 Q120,6 124,18" fill="none" stroke="#E8832A" stroke-width="0.8" opacity="0.4"/><circle cx="112" cy="10" r="2" fill="#FF9B3E" opacity="0.6"/><path d="M116,18 Q118,10 120,14 Q122,8 124,14 Q126,10 128,18" fill="none" stroke="#D4A030" stroke-width="0.6" opacity="0.3"/><line x1="155" y1="12" x2="240" y2="12" stroke="rgba(232,131,42,0.12)" stroke-width="0.5"/></svg>
+  </div>
+
+  <!-- ═══ SOUND FAMILIAR ═══ -->
+  <section class="section bg-coal">
+    <div class="inner">
+      <div class="label">Sound Familiar?</div>
+      <h2 class="heading" style="font-size:38px; margin-bottom:48px;">If any of this sounds familiar...</h2>
+
+      <div class="numbered-row">
+        <span class="num">01</span>
+        <p class="body-text">You've done the work. You sat down, you wrote the transformation statement, you mapped out your sessions. But when you read it back, it still sounds like every other spiritual business owner on the internet. You know your work is different. You just can't find the words that prove it yet. And the longer you sit with copy that doesn't feel right, the harder it gets to put yourself out there.</p>
+      </div>
+      <div class="numbered-row">
+        <span class="num">02</span>
+        <p class="body-text">You've tried asking for feedback in communities, but a comment thread can only go so far. What you really need is someone sitting across from you who can look at your actual copy, your actual method, and tell you exactly where the gap is. Not a template. Not a framework worksheet. A real conversation with someone who's built offers that sell and knows what to look for.</p>
+      </div>
+      <div class="numbered-row">
+        <span class="num">03</span>
+        <p class="body-text">You're posting content, showing up, doing all the things you've been told to do. But it's not turning into bookings. You're not sure if it's the copy, the positioning, or the way you're explaining what you do. You just know something isn't landing and you're tired of guessing.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ember-divider">
+    <svg width="240" height="24" viewBox="0 0 240 24"><line x1="0" y1="12" x2="85" y2="12" stroke="rgba(232,131,42,0.12)" stroke-width="0.5"/><path d="M100,18 Q104,6 108,12 Q112,4 116,12 Q120,6 124,18" fill="none" stroke="#E8832A" stroke-width="0.8" opacity="0.4"/><circle cx="112" cy="10" r="2" fill="#FF9B3E" opacity="0.6"/><path d="M116,18 Q118,10 120,14 Q122,8 124,14 Q126,10 128,18" fill="none" stroke="#D4A030" stroke-width="0.6" opacity="0.3"/><line x1="155" y1="12" x2="240" y2="12" stroke="rgba(232,131,42,0.12)" stroke-width="0.5"/></svg>
+  </div>
+
+  <!-- ═══ INTRODUCING THE SESSION ═══ -->
+  <section class="section bg-charcoal">
+    <div class="inner text-center">
+      <div class="label">The Session</div>
+      <h2 class="heading" style="font-size:36px; margin-bottom:12px;">
+        Introducing <span class="italic color-ember-glow">The Forge Session</span>
+      </h2>
+      <p class="body-text" style="max-width:580px; margin:0 auto 32px;">
+        A private 40-minute Zoom call where I sit down with you, look at your actual work, and help you get unstuck in real time. No preset agenda. We start wherever you are, find the constraint that's holding you back, and build something finished before you leave.
+      </p>
+
+      <div class="specs-grid">
+        <div class="spec-card">
+          <div class="spec-label">Duration</div>
+          <div class="spec-value">40 Minutes</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-label">Format</div>
+          <div class="spec-value">Private Zoom Call</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-label">Includes</div>
+          <div class="spec-value">Recording + 90-Day Plan</div>
+        </div>
+      </div>
+
+      <div class="cta-wrap">
+        <a href="https://calendly.com/sacredvisionsociety/forge-session" target="_blank" rel="noopener noreferrer" class="cta-btn">Book Your Forge Session · $47</a>
+        <p class="cta-sub">You'll book and pay on Calendly. Your Zoom link arrives as soon as you schedule.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ember-divider">
+    <svg width="240" height="24" viewBox="0 0 240 24"><line x1="0" y1="12" x2="85" y2="12" stroke="rgba(232,131,42,0.12)" stroke-width="0.5"/><path d="M100,18 Q104,6 108,12 Q112,4 116,12 Q120,6 124,18" fill="none" stroke="#E8832A" stroke-width="0.8" opacity="0.4"/><circle cx="112" cy="10" r="2" fill="#FF9B3E" opacity="0.6"/><path d="M116,18 Q118,10 120,14 Q122,8 124,14 Q126,10 128,18" fill="none" stroke="#D4A030" stroke-width="0.6" opacity="0.3"/><line x1="155" y1="12" x2="240" y2="12" stroke="rgba(232,131,42,0.12)" stroke-width="0.5"/></svg>
+  </div>
+
+  <!-- ═══ WHAT SHIFTS ═══ -->
+  <section class="section bg-coal">
+    <div class="inner">
+      <div class="label text-center">What Shifts</div>
+      <h2 class="heading text-center" style="font-size:36px; margin-bottom:48px;">After your session, you will...</h2>
+
+      <div class="numbered-row">
+        <span class="num">01</span>
+        <div>
+          <h3>Walk Away with Something Finished</h3>
+          <p class="body-text" style="font-size:15px;">Not a brainstorm. Not a list of ideas. An actual deliverable, rewritten in your voice, that you can use right away. Whether that's your transformation statement, your session flow, or your method messaging, you leave the call with it done. Not almost done. Done.</p>
+        </div>
+      </div>
+      <div class="numbered-row">
+        <span class="num">02</span>
+        <div>
+          <h3>Know Exactly What to Say and How to Say It</h3>
+          <p class="body-text" style="font-size:15px;">You'll have the specific language that speaks to your ideal client's real pain points and desired outcomes. The kind of copy that makes someone read it and think, "That's exactly what I need." No more guessing. No more rewriting the same paragraph six times.</p>
+        </div>
+      </div>
+      <div class="numbered-row">
+        <span class="num">03</span>
+        <div>
+          <h3>Have a Clear Plan for What Comes Next</h3>
+          <p class="body-text" style="font-size:15px;">Before you leave, we build your 90-day action plan together. You'll know your next three moves, in order, with the confidence to actually take them. No more spinning. No more wondering if you're doing it right. You'll have direction that feels solid.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ember-divider">
+    <svg width="240" height="24" viewBox="0 0 240 24"><line x1="0" y1="12" x2="85" y2="12" stroke="rgba(232,131,42,0.12)" stroke-width="0.5"/><path d="M100,18 Q104,6 108,12 Q112,4 116,12 Q120,6 124,18" fill="none" stroke="#E8832A" stroke-width="0.8" opacity="0.4"/><circle cx="112" cy="10" r="2" fill="#FF9B3E" opacity="0.6"/><path d="M116,18 Q118,10 120,14 Q122,8 124,14 Q126,10 128,18" fill="none" stroke="#D4A030" stroke-width="0.6" opacity="0.3"/><line x1="155" y1="12" x2="240" y2="12" stroke="rgba(232,131,42,0.12)" stroke-width="0.5"/></svg>
+  </div>
+
+  <!-- ═══ THIS IS FOR YOU IF ═══ -->
+  <section class="section bg-charcoal">
+    <div class="inner text-center">
+      <div class="label">Is This You?</div>
+      <h2 class="heading" style="font-size:36px; margin-bottom:48px;">This session was made for you if...</h2>
+
+      <div class="is-you-grid">
+        <div class="is-you-card">
+          <span class="is-you-num">01</span>
+          <p class="body-text" style="font-size:15px;">You can feel your method taking shape but something about the structure, the language, or the flow isn't clicking yet and you need someone to help you see where the gap is</p>
+        </div>
+        <div class="is-you-card">
+          <span class="is-you-num">02</span>
+          <p class="body-text" style="font-size:15px;">You've been doing the work inside the Soul-Forged Method but you've hit a wall that a community post isn't going to solve. You need real-time, personalized support to move forward.</p>
+        </div>
+        <div class="is-you-card">
+          <span class="is-you-num">03</span>
+          <p class="body-text" style="font-size:15px;">Your offers aren't getting traction and you're not sure if it's the copy, the positioning, or the way you're explaining what you do. You need experienced eyes on it.</p>
+        </div>
+        <div class="is-you-card">
+          <span class="is-you-num">04</span>
+          <p class="body-text" style="font-size:15px;">You're a tarot reader, coach, energy worker, or spiritual business owner who is building something real and you're ready for someone to sit across from you and work on it together.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ember-divider">
+    <svg width="240" height="24" viewBox="0 0 240 24"><line x1="0" y1="12" x2="85" y2="12" stroke="rgba(232,131,42,0.12)" stroke-width="0.5"/><path d="M100,18 Q104,6 108,12 Q112,4 116,12 Q120,6 124,18" fill="none" stroke="#E8832A" stroke-width="0.8" opacity="0.4"/><circle cx="112" cy="10" r="2" fill="#FF9B3E" opacity="0.6"/><path d="M116,18 Q118,10 120,14 Q122,8 124,14 Q126,10 128,18" fill="none" stroke="#D4A030" stroke-width="0.6" opacity="0.3"/><line x1="155" y1="12" x2="240" y2="12" stroke="rgba(232,131,42,0.12)" stroke-width="0.5"/></svg>
+  </div>
+
+  <!-- ═══ MEET YOUR GUIDE ═══ -->
+  <section class="section bg-coal">
+    <div class="inner">
+      <div class="label">Your Guide</div>
+      <div class="guide-row">
+        <div class="guide-photo">
+          <!-- Replace src with your hosted image URL -->
+          <img src="" alt="Sunny" />
+        </div>
+        <div class="guide-text">
+          <h2 class="heading" style="font-size:32px; margin-bottom:20px;">Meet <span class="italic color-ember-glow">Sunny</span></h2>
+          <p class="body-text" style="margin-bottom:16px;">I'm the owner and founder of The High Priestess Tarot School, Sacred Vision Society, and the Soul-Forged Founders community on Skool. I've made over $200,000 online building the kind of business I'm going to help you build. Not because I cracked some secret code, but because I learned how to highlight the gap between what I do and how I need to talk about it. That gap is where most spiritual business owners lose their people. And it's exactly where I do my best work.</p>
+          <p class="body-text">I've created multiple offers that convert, run challenges that fill, and helped spiritual business owners at every level get specific on what makes their work different. My clients tell me the thing that sets me apart is that I don't give you a template and send you off. I sit with you, I look at your actual copy, and we fix it together.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ember-divider">
+    <svg width="240" height="24" viewBox="0 0 240 24"><line x1="0" y1="12" x2="85" y2="12" stroke="rgba(232,131,42,0.12)" stroke-width="0.5"/><path d="M100,18 Q104,6 108,12 Q112,4 116,12 Q120,6 124,18" fill="none" stroke="#E8832A" stroke-width="0.8" opacity="0.4"/><circle cx="112" cy="10" r="2" fill="#FF9B3E" opacity="0.6"/><path d="M116,18 Q118,10 120,14 Q122,8 124,14 Q126,10 128,18" fill="none" stroke="#D4A030" stroke-width="0.6" opacity="0.3"/><line x1="155" y1="12" x2="240" y2="12" stroke="rgba(232,131,42,0.12)" stroke-width="0.5"/></svg>
+  </div>
+
+  <!-- ═══ TESTIMONIALS ═══ -->
+  <section class="section bg-charcoal">
+    <div class="inner text-center">
+      <div class="label">Client Experiences</div>
+      <h2 class="heading" style="font-size:36px; margin-bottom:48px;">Words from those who have been here before</h2>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-quote">"</div>
+          <p class="body-text" style="font-size:14px; line-height:1.8; margin-bottom:20px;">This method has truly lit a spark in my life and encouraged me to move forward with my business. I've had some incredible breakthroughs and my confidence has improved tremendously. I'm revamping my readings and can't wait to see what happens next.</p>
+          <div class="testimonial-name">Sarah</div>
+          <div class="testimonial-detail">Tarot Reader</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-quote">"</div>
+          <p class="body-text" style="font-size:14px; line-height:1.8; margin-bottom:20px;">Thank you, Sunny, for creating these amazing tools. So much thought and effort has gone into this. I've found it useful and thought provoking. It's a great way to create a framework but at the same time really think about its purpose and place. You've inspired me.</p>
+          <div class="testimonial-name">Anne</div>
+          <div class="testimonial-detail">Spiritual Business Owner</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-quote">"</div>
+          <p class="body-text" style="font-size:14px; line-height:1.8; margin-bottom:20px;">I realized with my business that it's not about the cards. They're just showing me what questions to ask clients. The questions and conversations are more important than the cards themselves. This helped me learn that I do more than read cards. I work with others using their energy and awareness.</p>
+          <div class="testimonial-name">Community Member</div>
+          <div class="testimonial-detail">Energy Worker</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ember-divider">
+    <svg width="240" height="24" viewBox="0 0 240 24"><line x1="0" y1="12" x2="85" y2="12" stroke="rgba(232,131,42,0.12)" stroke-width="0.5"/><path d="M100,18 Q104,6 108,12 Q112,4 116,12 Q120,6 124,18" fill="none" stroke="#E8832A" stroke-width="0.8" opacity="0.4"/><circle cx="112" cy="10" r="2" fill="#FF9B3E" opacity="0.6"/><path d="M116,18 Q118,10 120,14 Q122,8 124,14 Q126,10 128,18" fill="none" stroke="#D4A030" stroke-width="0.6" opacity="0.3"/><line x1="155" y1="12" x2="240" y2="12" stroke="rgba(232,131,42,0.12)" stroke-width="0.5"/></svg>
+  </div>
+
+  <!-- ═══ INVESTMENT ═══ -->
+  <section class="section bg-coal">
+    <div class="inner text-center">
+      <div class="label">Your Investment</div>
+
+      <div class="invest-card">
+        <div class="invest-glow"></div>
+        <h3 class="heading" style="font-size:23px; margin-bottom:24px; position:relative;">The Forge Session</h3>
+        <div class="invest-price">$47</div>
+        <p class="invest-details">40-minute private Zoom call · Real-time strategy and rewrites · Recording of your session · 90-day action plan · Messaging you can use immediately</p>
+        <div class="cta-wrap" style="margin-top:0;">
+          <a href="https://calendly.com/sacredvisionsociety/forge-session" target="_blank" rel="noopener noreferrer" class="cta-btn">Book Your Forge Session</a>
+          <p class="cta-sub">You'll book and pay on Calendly. Your Zoom link arrives as soon as you schedule.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ember-divider">
+    <svg width="240" height="24" viewBox="0 0 240 24"><line x1="0" y1="12" x2="85" y2="12" stroke="rgba(232,131,42,0.12)" stroke-width="0.5"/><path d="M100,18 Q104,6 108,12 Q112,4 116,12 Q120,6 124,18" fill="none" stroke="#E8832A" stroke-width="0.8" opacity="0.4"/><circle cx="112" cy="10" r="2" fill="#FF9B3E" opacity="0.6"/><path d="M116,18 Q118,10 120,14 Q122,8 124,14 Q126,10 128,18" fill="none" stroke="#D4A030" stroke-width="0.6" opacity="0.3"/><line x1="155" y1="12" x2="240" y2="12" stroke="rgba(232,131,42,0.12)" stroke-width="0.5"/></svg>
+  </div>
+
+  <!-- ═══ FAQ ═══ -->
+  <section class="section bg-charcoal">
+    <div class="inner">
+      <div class="label text-center">Before You Book</div>
+      <h2 class="heading text-center" style="font-size:36px; margin-bottom:48px;">Questions you might be holding</h2>
+
+      <div class="faq-item">
+        <h3>What happens after I book?</h3>
+        <p class="body-text" style="font-size:15px;">You'll book and pay right on Calendly. As soon as you schedule, you'll get a Zoom link for your session. When we meet, there's no preset agenda. I start by figuring out exactly where you're stuck, then we spend our time working on that together so you get the most out of every minute.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Do I need to have taken any of the trainings?</h3>
+        <p class="body-text" style="font-size:15px;">No. You don't need to have taken any trainings or completed any steps before booking. If you've done some of the work, great, we'll build on it. If you haven't started certain pieces or you're not sure where you're stuck, that's fine too. I can help you figure that out in the session.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Is this just coaching, or will I actually walk away with something?</h3>
+        <p class="body-text" style="font-size:15px;">You walk away with deliverables. This isn't a pep talk. We actually build something together during the session. Whether that's a rewritten transformation statement, a tightened session flow, or messaging for your offer, you leave with finished work.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I bring more than one thing to work on?</h3>
+        <p class="body-text" style="font-size:15px;">Absolutely. We have 40 minutes, and we can work on whatever you bring to me. I'll help you prioritize based on what will move the needle most, and we'll get as much done as we can.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Will I get a recording of the session?</h3>
+        <p class="body-text" style="font-size:15px;">Yes. If you'd like a recording, I'll send it to you after the call so you can revisit everything we worked on.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What if I'm not far enough along?</h3>
+        <p class="body-text" style="font-size:15px;">There's no minimum level you need to be at to book this session. This works for beginners too. I can help you figure out exactly where you are in your journey and build a plan for your next steps. Wherever you are is the right place to start.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FINAL CTA ═══ -->
+  <section class="section bg-ash" style="padding:80px 28px; overflow:hidden; position:relative;">
+    <!-- Floating Embers -->
+    <div class="ember-container" id="finalEmbers"></div>
+
+    <div class="inner text-center" style="position:relative; z-index:3;">
+      <div class="ember-divider">
+        <svg width="240" height="24" viewBox="0 0 240 24"><line x1="0" y1="12" x2="85" y2="12" stroke="rgba(232,131,42,0.12)" stroke-width="0.5"/><path d="M100,18 Q104,6 108,12 Q112,4 116,12 Q120,6 124,18" fill="none" stroke="#E8832A" stroke-width="0.8" opacity="0.4"/><circle cx="112" cy="10" r="2" fill="#FF9B3E" opacity="0.6"/><path d="M116,18 Q118,10 120,14 Q122,8 124,14 Q126,10 128,18" fill="none" stroke="#D4A030" stroke-width="0.6" opacity="0.3"/><line x1="155" y1="12" x2="240" y2="12" stroke="rgba(232,131,42,0.12)" stroke-width="0.5"/></svg>
+      </div>
+
+      <h2 class="heading" style="font-size:38px; margin-bottom:16px; margin-top:20px;">
+        The next step you've been looking for<br />
+        <span class="italic color-ember-glow">is one session away</span>
+      </h2>
+      <p class="body-text" style="max-width:500px; margin:0 auto 8px;">You've been building something real. You just need forty minutes with someone who can see what you can't see yet. Let's get you unstuck.</p>
+
+      <div class="cta-wrap">
+        <a href="https://calendly.com/sacredvisionsociety/forge-session" target="_blank" rel="noopener noreferrer" class="cta-btn">Book Your Forge Session · $47</a>
+        <p class="cta-sub">Questions before you book? Email <a href="mailto:sunny@sunnysink.com" style="color:var(--ember-glow); text-decoration:underline;">sunny@sunnysink.com</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="site-footer">
+    <a href="https://www.sunnysink.com/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+    |
+    <a href="https://www.sunnysink.com/terms-conditions" target="_blank" rel="noopener noreferrer">Terms &amp; Conditions</a>
+    <br />
+    © 2026 S Sink Coaching<br />
+    PO Box 1651 Gillette, WY 82717-1651<br />
+    <a href="mailto:support@sunnysink.com">support@sunnysink.com</a>
+  </footer>
+
+  <!-- ═══ FLOATING EMBERS JS ═══ -->
+  <script>
+    function initEmbers(containerId, count) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      let idCounter = 0;
+
+      function spawnEmber() {
+        const el = document.createElement('div');
+        el.className = 'ember-dot';
+        const size = 2 + Math.random() * 3;
+        const drift = (Math.random() - 0.5) * 50;
+        const dur = 4 + Math.random() * 4;
+        const delay = Math.random() * 2;
+        const color = Math.random() > 0.4 ? '#FF9B3E' : '#E8C05A';
+
+        el.style.cssText = `
+          left: ${Math.random() * 100}%;
+          width: ${size}px;
+          height: ${size}px;
+          background: ${color};
+          box-shadow: 0 0 ${size * 2}px ${color}, 0 0 ${size * 4}px rgba(232,131,42,0.3);
+          --edrift: ${drift}px;
+          animation: emberRise ${dur}s ease-out ${delay}s forwards;
+        `;
+
+        container.appendChild(el);
+        setTimeout(() => el.remove(), (dur + delay) * 1000 + 500);
+      }
+
+      // Initial burst
+      for (let i = 0; i < 8; i++) setTimeout(spawnEmber, i * 300);
+      // Continuous spawning
+      setInterval(spawnEmber, 350);
+    }
+
+    initEmbers('heroEmbers', 20);
+    initEmbers('finalEmbers', 10);
+  </script>
+
+</body>
+</html>
